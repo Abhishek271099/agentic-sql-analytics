@@ -1,0 +1,4 @@
+.env
+venv
+logs
+gradio_frontend.py
