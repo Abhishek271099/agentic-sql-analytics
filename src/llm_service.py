@@ -12,7 +12,6 @@ class LLM:
                 api_key = api_key,
                 api_version = "2024-02-15-preview"
             )
-        
             logger.info("LLM client initiated \u2705")
 
         except AuthenticationError:
