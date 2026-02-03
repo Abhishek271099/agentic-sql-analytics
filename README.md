@@ -42,7 +42,6 @@ The system converts user queries into safe, validated SQL using an LLM-based SQL
 .
 ├── app.py
 ├── requirements.txt
-├── .env
 └── src
     ├── agent.py              # SQLAgent and ResponseAgent
     ├── agent_prompt.py       # Prompts for agents

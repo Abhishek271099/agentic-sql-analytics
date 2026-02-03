@@ -13,7 +13,6 @@ class LLM:
                 api_version = "2024-02-15-preview"
             )
             logger.info("LLM client initiated \u2705")
-
         except AuthenticationError:
 
             logger.error("Failed to get LLM client due to invalid credentials \u274c")

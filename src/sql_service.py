@@ -27,22 +27,18 @@ class SQLClient:
         try:
             conn = pyodbc.connect(conn_str)
 
+            logger.info("SQL database connection successfully established \u2705")
+            return conn
+
         except pyodbc.OperationalError:
 
             logger.error(f"Connection Failed due to invalid credentials \u274c")
             raise HTTPException(status_code=500, detail=f"Connection Failed: check the server credentials")
-        
-        except pyodbc.Error:
-
-            logger.error(f"Database engine cannot perform a mathematically undefined operation \u274c")
 
         except Exception as e:
 
             logger.error(f"Internal Server Error \u274c: {str(e)}")
             raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
-
-        logger.info("SQL database connection successfully established \u2705")
-        return conn
     
     
     def get_data(self, conn, sql_query):
@@ -59,6 +55,11 @@ class SQLClient:
                 data.append(dict(zip(columns, row)))
 
             logger.info("Successfully retrieved data from SQL database \u2705")
+
+        except pyodbc.Error:
+
+            logger.error(f"Database engine cannot perform a mathematically undefined operation \u274c")
+            raise HTTPException(status_code=500, detail=f"Database engine cannot perform a mathematically undefined operation\n{str(e)}")
 
         except Exception as e:
 
